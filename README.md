@@ -24,6 +24,7 @@ AIM --> message.send --> [device inbox] --> notification sent --> notification r
 1. The provider services ([Apple](https://developer.apple.com/system-status/), Google, etc) are not available
 2. Certificates have expired or are missing
 3. The Qwasi messaging queues are full and causing delays
+4. The Qwasi message routers have not been whitelisted in your applications (GCM only).
 
 
 #### Recommendations
@@ -45,6 +46,21 @@ This will allow the operating system to "wakeup" the app in the background to pr
 In XCode in your target capabilities, under Background Modes, select "Background fetch".
 
 This will cause the operating system to periodically "wakeup" your application to fetch a missed notification. This is not guaranteed by the OS and will be limited by things like battery life and network connectivity.
+
+##### GCM (Google/Android Push)
+
+In order for our server to send messages to devices using your application you must whitelist Qwasi servers in your Google Developer Console.
+
+###### Production Servers
+
+1. 23.253.112.219
+2. 98.129.165.169
+3. 72.32.17.105 - 72.32.17.108
+
+###### Development Servers
+
+1. sandbox: 23.253.100.224, 72.32.52.12
+2. beta: 72.32.17.109
 
 ##### All platforms
 
